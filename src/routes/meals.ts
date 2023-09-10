@@ -2,6 +2,7 @@ import { randomUUID } from 'crypto'
 import { FastifyInstance } from 'fastify'
 import { z } from 'zod'
 import { knex } from '../database'
+import { checkUserInformad } from '../middlewares/check-user-informad'
 
 export async function mealsRoute(app: FastifyInstance) {
   app.post('/', async (request, reply) => {
@@ -29,4 +30,21 @@ export async function mealsRoute(app: FastifyInstance) {
 
     return reply.status(201).send(meal[0])
   })
+
+  app.get(
+    '/',
+    {
+      preHandler: [checkUserInformad],
+    },
+    async (request, reply) => {
+      const getUserQuerySchema = z.object({
+        userId: z.string(),
+      })
+      const { userId } = getUserQuerySchema.parse(request.query)
+
+      const meals = await knex('meals').where('user_id', userId)
+
+      return reply.send(meals)
+    },
+  )
 }
