@@ -7,7 +7,8 @@
     "dev": "tsx watch src/server.ts",
     "knex": "node --no-warnings --loader tsx ./node_modules/.bin/knex",
     "build": "tsup src -d build",
-    "lint": "eslint src --ext .ts --fix"
+    "lint": "eslint src --ext .ts --fix",
+    "test": "vitest"
   },
   "keywords": [],
   "author": "Mardonio S Costa",
@@ -18,7 +19,8 @@
     "eslint": "^8.48.0",
     "tsup": "^7.2.0",
     "tsx": "^3.12.8",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.4"
   },
   "dependencies": {
     "dotenv": "^16.3.1",
