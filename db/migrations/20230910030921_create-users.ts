@@ -6,8 +6,8 @@ export async function up(knex: Knex): Promise<void> {
     table.text('nome').notNullable()
     table.integer('idade').notNullable()
     table.decimal('peso', 10, 2).notNullable()
-    table.integer('altura').notNullable()
-    table.timestamp('updated_at').defaultTo(knex.fn.now()).notNullable()
+    table.decimal('altura', 10, 2).notNullable()
+    table.timestamp('updated_at')
     table.timestamp('created_at').defaultTo(knex.fn.now()).notNullable()
   })
 }
