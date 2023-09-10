@@ -3,10 +3,10 @@
 ### Usuario
 
 - [x] Deve ser possível criar um usuário
-- [ ] Deve ser possível identificar o usuário entre as requisições
+- [x] Deve ser possível identificar o usuário entre as requisições
 
 ### Refeições
-- [ ] Deve ser possível registrar uma refeição feita
+- [x] Deve ser possível registrar uma refeição feita
 - [ ] Deve ser possível editar uma refeição,
 - [ ] Deve ser possível apagar uma refeição
 - [ ] Deve ser possível listar todas as refeições de um usuário
@@ -19,5 +19,5 @@
 
 ## RN
 
-- [ ] As refeições devem ser relacionadas a um usuário.
+- [x] As refeições devem ser relacionadas a um usuário.
 - [ ] O usuário só pode visualizar, editar e apagar as refeições o qual ele criou
