@@ -37,14 +37,65 @@ export async function mealsRoute(app: FastifyInstance) {
       preHandler: [checkUserInformad],
     },
     async (request, reply) => {
-      const getUserQuerySchema = z.object({
-        userId: z.string(),
-      })
-      const { userId } = getUserQuerySchema.parse(request.query)
+      const { userId } = request.query
 
       const meals = await knex('meals').where('user_id', userId)
 
       return reply.send(meals)
+    },
+  )
+
+  app.get(
+    '/:id',
+    {
+      preHandler: [checkUserInformad],
+    },
+    async (request, reply) => {
+      const { userId } = request.query
+
+      const getMealParamsSchema = z.object({
+        id: z.string().uuid(),
+      })
+
+      const { id } = getMealParamsSchema.parse(request.params)
+
+      const meal = await knex('meals')
+        .where({
+          user_id: userId,
+          id,
+        })
+        .first()
+
+      if (!meal) {
+        return reply.status(404).send({
+          message: 'Meal not found!',
+        })
+      }
+
+      return { meal }
+    },
+  )
+
+  app.delete(
+    '/:id',
+    {
+      preHandler: [checkUserInformad],
+    },
+    async (request, reply) => {
+      const { userId } = request.query
+
+      const getMealParamsSchema = z.object({
+        id: z.string().uuid(),
+      })
+
+      const { id } = getMealParamsSchema.parse(request.params)
+
+      const meal = await knex('meals').delete().where({
+        user_id: userId,
+        id,
+      })
+
+      return reply.status(204).send()
     },
   )
 }
