@@ -1,14 +1,9 @@
-import fastify from 'fastify'
-
-const app = fastify()
-
-app.post('/usuarios', async (request, reply) => {
-  return reply.status(201).send()
-})
+import { app } from './app'
+import { env } from './env'
 
 app
   .listen({
-    port: 3335,
+    port: env.PORT,
   })
   .then(() => {
     console.log('HTTP Server Running')

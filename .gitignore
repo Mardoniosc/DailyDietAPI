@@ -2,6 +2,7 @@
 node_modules
 
 # banco de dados
-
 db/*.db
 
+# variveis ambiente
+.env
