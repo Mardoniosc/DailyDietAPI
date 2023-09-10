@@ -1,0 +1,20 @@
+{
+  "name": "dailydietapi",
+  "version": "1.0.0",
+  "description": "Api rest de registro de refeições de uma dieta",
+  "main": "src/server.ts",
+  "scripts": {
+    "dev": "tsx watch src/server.ts"
+  },
+  "keywords": [],
+  "author": "Mardonio S Costa",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.5.9",
+    "tsx": "^3.12.8",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "fastify": "^4.22.2"
+  }
+}
