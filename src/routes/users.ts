@@ -14,14 +14,16 @@ export async function usersRoute(app: FastifyInstance) {
 
     const { nome, idade, peso, altura } = createUserBody.parse(request.body)
 
-    await knex('users').insert({
-      id: randomUUID(),
-      nome,
-      idade,
-      peso,
-      altura,
-    })
+    const user = await knex('users')
+      .insert({
+        id: randomUUID(),
+        nome,
+        idade,
+        peso,
+        altura,
+      })
+      .returning('*')
 
-    return reply.status(201).send()
+    return reply.status(201).send(user[0])
   })
 }
