@@ -1,1 +1,7 @@
+#dependencias
 node_modules
+
+# banco de dados
+
+db/*.db
+
