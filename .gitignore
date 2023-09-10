@@ -6,6 +6,7 @@ db/*.db
 
 # variveis ambiente
 .env
+.env.test
 
 # Build
 /build

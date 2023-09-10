@@ -17,7 +17,7 @@ describe('Users routes', () => {
     execSync('npm run knex migrate:latest')
   })
 
-  it('should be able to create a new user', async () => {
+  it('should be able to create a new meal', async () => {
     const user = await request(app.server)
       .post('/users')
       .send({
@@ -28,12 +28,21 @@ describe('Users routes', () => {
       })
       .expect(201)
 
-    expect(user.body).toEqual(
+    const meal = await request(app.server)
+      .post('/meals')
+      .send({
+        name: 'Refeição 1',
+        description: 'Macarronada',
+        dateTime: '2023-09-10 15:21:21',
+        withinTheDiet: true,
+        userId: user.body.id,
+      })
+      .expect(201)
+
+    expect(meal.body).toEqual(
       expect.objectContaining({
-        nome: 'User test 1',
-        idade: 36,
-        peso: 78,
-        altura: 1.56,
+        name: 'Refeição 1',
+        description: 'Macarronada',
       }),
     )
   })
